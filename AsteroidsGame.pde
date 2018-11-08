@@ -1,4 +1,5 @@
 Spaceship nasa = new Spaceship();
+Asteroid[] stupid = new Asteroid[8];
 Star[] bunch = new Star[200];
 public void setup() 
 {
@@ -8,23 +9,37 @@ public void setup()
     bunch[i] = new Star();
     
   }
+  for(int z = 0; z < stupid.length; z++)
+  {
+    stupid[z] = new Asteroid();
+    
+  }
+  
 }
 public void draw() 
 {
   background(0);
-  nasa.show();
-  nasa.move();
- for(int i = 0; i < bunch.length; i++)
+  for(int i = 0; i < bunch.length; i++)
  {
    bunch[i].show();
  }
+  nasa.show();
+  nasa.move();for(int z = 0; z < stupid.length; z++)
+  {
+     stupid[z].show();
+  stupid[z].move();
+ 
+    
+  }
+ 
+ 
  fill(255);
  textSize(20);
  text("myCenterX: "+ nasa.getX() ,20,30);
  text("myCenterY: "+ nasa.getY(), 20,50);
  text("myPointDirection: "+ nasa.getPointDirection(),20,70);
- text("myDirectionX: " + nasa.getDirectionX(), 20,90);
- text("myDirectionY: " + nasa.getDirectionY(), 20, 110);
+ text("myDirectionX: " + (int)nasa.getDirectionX(), 20,90);
+ text("myDirectionY: " + (int)nasa.getDirectionY(), 20, 110);
 }
 
 public void keyPressed()
