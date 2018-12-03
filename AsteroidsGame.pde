@@ -1,5 +1,6 @@
+
 Spaceship nasa = new Spaceship();
-Asteroid[] stupid = new Asteroid[8];
+ArrayList <Asteroid> hello = new ArrayList<Asteroid>();
 Star[] bunch = new Star[200];
 public void setup() 
 {
@@ -9,12 +10,10 @@ public void setup()
     bunch[i] = new Star();
     
   }
-  for(int z = 0; z < stupid.length; z++)
-  {
-    stupid[z] = new Asteroid();
-    
-  }
+ for(int i = 0; i < 15 ; i++){
+   hello.add( 0 , new Asteroid());
   
+}
 }
 public void draw() 
 {
@@ -23,15 +22,24 @@ public void draw()
  {
    bunch[i].show();
  }
+  
   nasa.show();
-  nasa.move();for(int z = 0; z < stupid.length; z++)
-  {
-     stupid[z].show();
-  stupid[z].move();
- 
-    
-  }
- 
+  nasa.move();
+   for(int i = 0; i<hello.size() ; i++){
+   hello.get(i).show();
+   hello.get(i).move();
+   }
+   for(int i = 0; i<hello.size() ; i++){
+   if (dist(nasa.getX(), nasa.getY(), hello.get(i).getX(), hello.get(i).getY())<=23 ){
+   hello.remove(i);   
+   break;
+   }
+   }
+
+   
+  
+  
+
  
  fill(255);
  textSize(20);
