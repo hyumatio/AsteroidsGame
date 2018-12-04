@@ -37,7 +37,7 @@ class Asteroid extends Floater
    super.move();
    this.turn(rotation);
   }   
-  public void setX(int x)      
+      public void setX(int x)      
       {
         myCenterX = x;
       }

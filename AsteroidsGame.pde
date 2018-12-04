@@ -1,7 +1,10 @@
 
 Spaceship nasa = new Spaceship();
 ArrayList <Asteroid> hello = new ArrayList<Asteroid>();
+ArrayList <Bullet> hola = new ArrayList<Bullet>();
+Bullet bob;
 Star[] bunch = new Star[200];
+int death = 0;
 public void setup() 
 {
   size(500,500);
@@ -14,6 +17,7 @@ public void setup()
    hello.add( 0 , new Asteroid());
   
 }
+
 }
 public void draw() 
 {
@@ -29,14 +33,32 @@ public void draw()
    hello.get(i).show();
    hello.get(i).move();
    }
+   for(int i = 0; i< hola.size() ; i++)
+{
+   hola.get(i).show();
+   hola.get(i).move();
+  
+}
    for(int i = 0; i<hello.size() ; i++){
-   if (dist(nasa.getX(), nasa.getY(), hello.get(i).getX(), hello.get(i).getY())<=23 ){
+     for(int q = 0; q <hola.size(); q++)
+     {
+   if (dist(hola.get(q).getX(), hola.get(q).getY(), hello.get(i).getX(), hello.get(i).getY())<=27 ){
    hello.remove(i);   
+   hola.remove(q);
    break;
    }
    }
+   }
 
-   
+  for(int i = 0; i<hello.size() ; i++){
+     if ( 28>= dist(nasa.getX(),nasa.getY(), hello.get(i).getX(), hello.get(i).getY()) ||dist(nasa.getX(),nasa.getY(), hello.get(i).getX(), hello.get(i).getY())<=30 ){
+     death = death+1;
+     text("YOU DIED", 200,250);
+     }
+    
+    
+  }
+
   
   
 
@@ -48,6 +70,7 @@ public void draw()
  text("myPointDirection: "+ nasa.getPointDirection(),20,70);
  text("myDirectionX: " + (int)nasa.getDirectionX(), 20,90);
  text("myDirectionY: " + (int)nasa.getDirectionY(), 20, 110);
+ text("Death: " + death, 20, 130);
 }
 
 public void keyPressed()
@@ -62,6 +85,7 @@ public void keyPressed()
   nasa.setDirectionY(0);
   nasa.setPointDirection((int)(Math.random()*360));
   }
+  if(key == 'r'){hola.add(new Bullet(nasa));}
 }
   
   
